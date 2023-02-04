@@ -1,0 +1,16 @@
+<ul class="small_list">
+{%for question in jsondata.items%}
+	<li>
+		<div class="title">
+			<a target="_blank" href="{{question.link}}">
+				{{question.title}}
+			</a>
+		</div>
+		<span class="meta"><b>Tags:</b> 
+		{% for tag in question.tags %}
+			{{tag}}
+		{%endfor%}	
+		</span>
+	</li>
+{%endfor%}
+<ul>

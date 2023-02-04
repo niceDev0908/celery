@@ -1,0 +1,37 @@
+{%extends "base.html" %}
+{%block title%}External Resources{%endblock%}
+{% block extrascripts %}
+  <script type="text/javascript">
+    $(document).ready(function(){
+      getHTMLBlock("#stackoverflow", "/ajax/stackoverflowquestions/10/1/");
+    });
+  </script>
+{% endblock %}
+{%block content%}
+  <h1>Community Links</h1>
+  {% include "common/share.html" %}
+  <div style="float: left; width: 65%;">
+    <div class="list">
+    {%for link in links.object_list %}
+        <h3><a href="{{link.url}}" title="{{link.title|striptags|escape}}">{{link.title}}</a></h3>
+        <span class="meta">Author: {{link.author}} | Content type: {{link.content_type}}</span>
+      
+    {% endfor %}
+    </div>
+    {% include "common/paginator.html" with paginator=links %}
+    <div class="clear"></div>
+  </div>
+  <div style="float: right; width: 30%;">
+    <h3>Resources</h3>
+    <p>
+      <a href="https://groups.google.com/forum/#!forum/celery-users">
+        - Celery-users Google Group
+      </a>
+    </p>
+    <h3>Stack Overflow</h3>
+    <div id="stackoverflow">
+      
+    </div>
+  </div>
+  <div class="clear"></div>
+{%endblock%}  
